@@ -1,36 +1,38 @@
-# Project: Deploying a Private Ethereum Blockchain
+# Private Ethereum Proof-of-Work Lab
 
-This repository documents a project from the **41900 Cryptography** course that involved building and interacting with a private Ethereum blockchain network from scratch. The project demonstrates a practical understanding of how core cryptographic concepts like hashing and digital signatures are combined to create a functional Proof-of-Work (PoW) blockchain.
+A historical university lab documenting a single-node private Ethereum network built with **Geth 1.9.15**. The
+exercise was completed for UTS 41900 Cryptography and reflects the Proof-of-Work tooling available in that legacy
+environment.
 
-The primary tool used was **geth (Go Ethereum)**, the official command-line interface for running a full Ethereum node.
+## Lab workflow
 
-### Project Workflow & Key Stages
+1. Defined a custom genesis configuration with a private chain ID and low test difficulty.
+2. Initialised a local chain data directory with `geth init`.
+3. Created two local accounts through the Geth JavaScript console.
+4. Selected an etherbase account and mined blocks in the isolated network.
+5. Submitted a test transaction, inspected the transaction pool and resumed mining.
+6. Confirmed the resulting transaction and account balances.
 
-The project involved setting up a single-node private network and performing fundamental blockchain operations:
+```text
+genesis configuration
+        |
+        v
+single local Geth node
+        |
+        +-- account creation
+        +-- legacy PoW mining
+        +-- local transaction pool
+        +-- balance and transaction checks
+```
 
-**1. Initializing the Blockchain (The Genesis Block):**
-*   Created a custom `genesis.json` file to define the initial state of the blockchain. This file configured parameters such as the `chainId`, `difficulty` (set low to accelerate mining), and initial account allocations.
-*   Used `geth init` to process the genesis file and create the very first block, laying the foundation for the private network.
+## Evidence
 
-**2. Account Management and Mining:**
-*   Used the `geth` JavaScript console to create multiple new Ethereum accounts (key pairs).
-*   Designated one account as the `etherbase`, the recipient for mining rewards.
-*   Initiated the mining process, which began solving the PoW puzzle to create new blocks and secure the network. Successfully observed the block number increasing.
+The [lab report](docs/Private-Ethereum-PoW-Lab-Report.pdf) contains the captured commands and results from the
+exercise. The original `genesis.json` is not included in this repository; its relevant configuration is visible in
+the report.
 
-**3. Executing Transactions:**
-*   Verified account balances using `eth.getBalance()`.
-*   Constructed and sent a transaction to transfer Ether from the `etherbase` account to a second account.
-*   Observed the transaction entering the transaction pool (`txpool`) and subsequently being included in a new block by the miner.
-*   Confirmed the success of the transaction by checking that the recipient's balance had increased.
+## Historical scope
 
-### Core Skills & Technologies Demonstrated:
+This repository demonstrates foundational blockchain mechanics in an isolated learning environment. It does not
+represent a current Ethereum deployment pattern, smart-contract application or production blockchain network.
 
-*   **Blockchain Fundamentals:** Practical knowledge of blocks, chains, transactions, and consensus mechanisms.
-*   **Ethereum & geth:** Proficiency with the Go Ethereum client for node operation, account management, and network interaction.
-*   **Proof-of-Work (PoW):** Hands-on experience with initiating and observing a PoW mining process.
-*   **Cryptocurrency Transactions:** Understanding of how value is transferred on a blockchain network.
-*   **Private Network Configuration:** Ability to define and launch a custom blockchain using a genesis file.
-*   **Command-Line & JS Console Interaction:** Interacting with a complex application programmatically.
-
----
-*This project was completed as part of the 41900 Cryptography course. The full report and the `genesis.json` file are included in this repository.*
